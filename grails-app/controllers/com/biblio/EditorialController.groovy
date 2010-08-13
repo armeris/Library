@@ -16,6 +16,7 @@ class EditorialController {
     def create = {
         def editorialInstance = new Editorial()
         editorialInstance.properties = params
+		flash.referer = params.referer
         return [editorialInstance: editorialInstance]
     }
 
@@ -23,7 +24,11 @@ class EditorialController {
         def editorialInstance = new Editorial(params)
         if (editorialInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'editorial.label', default: 'Editorial'), editorialInstance.nombre])}"
-            redirect(action: "show", id: editorialInstance.id)
+			if(!flash.referer){
+				redirect(action: "show", id: editorialInstance.id)
+			}else{
+				redirect(action: "create", controller: "book")
+			}
         }
         else {
             render(view: "create", model: [editorialInstance: editorialInstance])

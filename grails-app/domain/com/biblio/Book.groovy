@@ -25,6 +25,7 @@ class Book implements Serializable {
 				return false
 			}
 		})
+		autores(nullable:false)
 		fechaPublicacion(nullable:true,blank:true)
 		comentario(nullable:true,blank:true,size:0..2000)
 		valoracion(nullable:true,blank:true,inList:[-1,0,1,2,3,4])
@@ -47,6 +48,17 @@ class Book implements Serializable {
 	}
 	
 	String getSFechaPublicacion(){
-		return sFechaPublicacion
+		if(sFechaPublicacion){
+			return sFechaPublicacion
+		}else{
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy")
+			try{
+				return sdf.parse(fechaPublicacion)
+			}catch(Exception e){
+				return ""
+			}
+		}
+		
+		
 	}
 }

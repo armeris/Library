@@ -43,19 +43,23 @@
                             
                         </tr>
                     
-                        <tr class="prop">
-                            <td valign="top" class="name"><g:message code="libro.comentario.label" default="Comentario" /></td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean: bookInstance, field: "comentario")}</td>
-                            
-                        </tr>
+                    	<g:if test="${bookInstance.comentario}">
+	                        <tr class="prop">
+	                            <td valign="top" class="name"><g:message code="libro.comentario.label" default="Comentario" /></td>
+	                            
+	                            <td valign="top" class="value">${fieldValue(bean: bookInstance, field: "comentario")}</td>
+	                            
+	                        </tr>
+                        </g:if>
                     
-                        <tr class="prop">
-                            <td valign="top" class="name"><g:message code="libro.valoracion.label" default="Valoracion" /></td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean: bookInstance, field: "valoracion")}</td>
-                            
-                        </tr>
+                    	<g:if test="${bookInstance.leido}">
+	                        <tr class="prop">
+	                            <td valign="top" class="name"><g:message code="libro.valoracion.label" default="Valoracion" /></td>
+	                            
+	                            <td valign="top" class="value">${fieldValue(bean: bookInstance, field: "valoracion")}</td>
+	                            
+	                        </tr>
+                        </g:if>
                     
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="libro.editorial.label" default="Editorial" /></td>

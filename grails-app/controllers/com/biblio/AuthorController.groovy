@@ -1,5 +1,7 @@
 package com.biblio
 
+import org.springframework.stereotype.Controller;
+
 class AuthorController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
@@ -15,15 +17,21 @@ class AuthorController {
 
     def create = {
         def authorInstance = new Author()
-        authorInstance.properties = params
-        return [authorInstance: authorInstance]
+		authorInstance.properties = params
+		flash.referer = params.referer
+		return [authorInstance: authorInstance]
     }
 
     def save = {
         def authorInstance = new Author(params)
+		
         if (authorInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'author.label', default: 'Author'), authorInstance.nombre+' '+authorInstance.apellido1])}"
-            redirect(action: "show", id: authorInstance.id)
+			if(!flash.referer){
+				redirect(action: "show", id: authorInstance.id)
+			}else{
+				redirect(action: "create", controller: "book")
+			}
         }
         else {
             render(view: "create", model: [authorInstance: authorInstance])
@@ -81,14 +89,16 @@ class AuthorController {
 
     def delete = {
         def authorInstance = Author.get(params.id)
+		def nombre
         if (authorInstance) {
             try {
+				nombre = authorInstance.nombre + " " + authorInstance.apellido1
                 authorInstance.delete(flush: true)
-                flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'author.label', default: 'Author'), params.id])}"
+                flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'author.label', default: 'Author'), nombre])}"
                 redirect(action: "list")
             }
             catch (org.springframework.dao.DataIntegrityViolationException e) {
-                flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'author.label', default: 'Author'), params.id])}"
+                flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'author.label', default: 'Author'), nombre])}"
                 redirect(action: "show", id: params.id)
             }
         }

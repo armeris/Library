@@ -9,4 +9,8 @@ class Editorial {
     static constraints = {
 		nombre(nullable:false,blank:false,size:3..30)
     }
+	
+	String toString(){
+		return nombre
+	}
 }

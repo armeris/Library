@@ -8,7 +8,7 @@
         <title><g:message code="default.list.label" args="[entityName]" /></title>
         <g:javascript>
         	function redirect(id){
-        		location.href='/Library/libro/show/'+id;
+        		location.href='/Library/book/show/'+id;
         	}
         </g:javascript>
     </head>
@@ -33,7 +33,7 @@
                         
                             <g:sortableColumn property="fechaPublicacion" title="${message(code: 'libro.fechaPublicacion.label', default: 'Fecha Publicacion')}" />
                         
-                            <g:sortableColumn property="comentario" title="${message(code: 'libro.comentario.label', default: 'Comentario')}" />
+                            <g:sortableColumn property="leido" title="${message(code: 'libro.leido.label', default: 'Leído')}" />
                         
                             <g:sortableColumn property="valoracion" title="${message(code: 'libro.valoracion.label', default: 'Valoracion')}" />
                         
@@ -47,11 +47,11 @@
                         
                             <td>${fieldValue(bean: bookInstance, field: "ISBN")}</td>
                         
-                            <td><g:formatDate date="${bookInstance.fechaPublicacion}" /></td>
+                            <td>${fieldValue(bean: bookInstance, field: "sFechaPublicacion")}</td>
                         
-                            <td>${fieldValue(bean: bookInstance, field: "comentario")}</td>
+                            <td>${fieldValue(bean: bookInstance, field: "leido")}</td>
                         
-                            <td>${fieldValue(bean: bookInstance, field: "valoracion")}</td>
+                            <td><g:if test="${bookInstance.leido}">${fieldValue(bean: bookInstance, field: "valoracion")}</g:if></td>
                         
                         </tr>
                     </g:each>

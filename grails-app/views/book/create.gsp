@@ -71,7 +71,7 @@
 	                                    <label for="editorial"><g:message code="libro.editorial.label" default="Editorial" /></label>
 	                                </td>
 	                                <td valign="top" class="value ${hasErrors(bean: bookInstance, field: 'editorial', 'errors')}">
-	                                    <g:select name="editorial.id" from="${com.biblio.Editorial.list()}" optionKey="id" value="${bookInstance?.editorial?.id}"  />
+	                                    <g:select name="editorial.id" from="${com.biblio.Editorial.list()}" optionKey="id" optionValue="nombre" value="${bookInstance?.editorial?.id}"  />
 	                                </td>
 	                            </tr>
                             </g:if>
@@ -82,7 +82,7 @@
 	                                </td>
 	                                
                             		<td valigh="top">
-                            			<g:link controller="editorial" action="create"><g:message code="libro.editorial.add"/></g:link>
+                            			<g:link controller="editorial" action="create" params="[referer:'book']" ><g:message code="libro.editorial.add"/></g:link>
                             		</td>
                             	</tr>
                             </g:else>
@@ -104,7 +104,7 @@
 	                                </td>
 	                                
                             		<td valigh="top">
-                            			<g:link controller="author" action="create"><g:message code="libro.autor.add"/></g:link>
+                            			<g:link controller="author" action="create" params="[referer:'book']" ><g:message code="libro.autor.add"/></g:link>
                             		</td>
                             	</tr>
                             </g:else>
@@ -113,7 +113,7 @@
                                 <td valign="top" class="name">
                                     <label for="fechaPublicacion"><g:message code="libro.fechaPublicacion.label" default="Fecha Publicacion" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean: bookInstance, field: 'fechaPublicacion', 'errors')}">
+                                <td valign="top" class="value ${hasErrors(bean: bookInstance, field: 'sFechaPublicacion', 'errors')}">
                                     <g:textField name="sFechaPublicacion" value="${bookInstance.sFechaPublicacion}" />
                                 </td>
                             </tr>
