@@ -22,7 +22,7 @@ class BookController {
     def save = {
         def bookInstance = new Book(params)
         if (bookInstance.save(flush: true)) {
-            flash.message = "${message(code: 'default.created.message', args: [message(code: 'libro.label', default: 'Libro'), bookInstance.id])}"
+            flash.message = "${message(code: 'default.created.message', args: [message(code: 'libro.label', default: 'Libro'), bookInstance.titulo])}"
             redirect(action: "show", id: bookInstance.id)
         }
         else {
@@ -66,7 +66,7 @@ class BookController {
             }
             bookInstance.properties = params
             if (!bookInstance.hasErrors() && bookInstance.save(flush: true)) {
-                flash.message = "${message(code: 'default.updated.message', args: [message(code: 'libro.label', default: 'Libro'), bookInstance.id])}"
+                flash.message = "${message(code: 'default.updated.message', args: [message(code: 'libro.label', default: 'Libro'), bookInstance.titulo])}"
                 redirect(action: "show", id: bookInstance.id)
             }
             else {

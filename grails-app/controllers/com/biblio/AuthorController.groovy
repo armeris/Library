@@ -22,7 +22,7 @@ class AuthorController {
     def save = {
         def authorInstance = new Author(params)
         if (authorInstance.save(flush: true)) {
-            flash.message = "${message(code: 'default.created.message', args: [message(code: 'author.label', default: 'Author'), authorInstance.id])}"
+            flash.message = "${message(code: 'default.created.message', args: [message(code: 'author.label', default: 'Author'), authorInstance.nombre+' '+authorInstance.apellido1])}"
             redirect(action: "show", id: authorInstance.id)
         }
         else {
@@ -66,7 +66,7 @@ class AuthorController {
             }
             authorInstance.properties = params
             if (!authorInstance.hasErrors() && authorInstance.save(flush: true)) {
-                flash.message = "${message(code: 'default.updated.message', args: [message(code: 'author.label', default: 'Author'), authorInstance.id])}"
+                flash.message = "${message(code: 'default.updated.message', args: [message(code: 'author.label', default: 'Author'), authorInstance.nombre+' '+authorInstance.apellido1])}"
                 redirect(action: "show", id: authorInstance.id)
             }
             else {

@@ -22,7 +22,7 @@ class EditorialController {
     def save = {
         def editorialInstance = new Editorial(params)
         if (editorialInstance.save(flush: true)) {
-            flash.message = "${message(code: 'default.created.message', args: [message(code: 'editorial.label', default: 'Editorial'), editorialInstance.id])}"
+            flash.message = "${message(code: 'default.created.message', args: [message(code: 'editorial.label', default: 'Editorial'), editorialInstance.nombre])}"
             redirect(action: "show", id: editorialInstance.id)
         }
         else {
@@ -67,7 +67,7 @@ class EditorialController {
             }
             editorialInstance.properties = params
             if (!editorialInstance.hasErrors() && editorialInstance.save(flush: true)) {
-                flash.message = "${message(code: 'default.updated.message', args: [message(code: 'editorial.label', default: 'Editorial'), editorialInstance.id])}"
+                flash.message = "${message(code: 'default.updated.message', args: [message(code: 'editorial.label', default: 'Editorial'), editorialInstance.nombre])}"
                 redirect(action: "show", id: editorialInstance.id)
             }
             else {
