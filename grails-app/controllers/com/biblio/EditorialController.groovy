@@ -89,17 +89,18 @@ class EditorialController {
         def editorialInstance = Editorial.get(params.id)
         if (editorialInstance) {
             try {
+				def nombreEditorial = editorialInstance.nombre
                 editorialInstance.delete(flush: true)
-                flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'editorial.label', default: 'Editorial'), params.id])}"
+                flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'editorial.label', default: 'Editorial'), nombreEditorial])}"
                 redirect(action: "list")
             }
             catch (org.springframework.dao.DataIntegrityViolationException e) {
-                flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'editorial.label', default: 'Editorial'), params.id])}"
+                flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'editorial.label', default: 'Editorial'), nombreEditorial])}"
                 redirect(action: "show", id: params.id)
             }
         }
         else {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'editorial.label', default: 'Editorial'), params.id])}"
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'editorial.label', default: 'Editorial'), nombreEditorial])}"
             redirect(action: "list")
         }
     }

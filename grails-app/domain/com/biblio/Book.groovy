@@ -1,6 +1,8 @@
 package com.biblio
 
-import java.text.SimpleDateFormat 
+import java.text.SimpleDateFormat
+import org.codehaus.groovy.grails.commons.ApplicationHolder
+import org.springframework.context.i18n.LocaleContextHolder as LCH
 
 class Book implements Serializable {
 	
@@ -12,6 +14,9 @@ class Book implements Serializable {
 	int valoracion
 	boolean leido
 	Editorial editorial
+	
+	def messageSource
+	
 	static hasMany = [autores:Author]
 	                  
     static transients = ["sFechaPublicacion"]
@@ -32,7 +37,7 @@ class Book implements Serializable {
     }
 
 	void setFechaPublicacion(String fecha){
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy")
+		SimpleDateFormat sdf = new SimpleDateFormat(getDateFormat())
 		try{
 			this.fechaPublicacion = sdf.parse(fecha)
 		}catch(Exception e){
@@ -41,24 +46,31 @@ class Book implements Serializable {
 	}
 	
 	void setSFechaPublicacion(String fecha){
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy")
+		SimpleDateFormat sdf = new SimpleDateFormat(getDateFormat())
 		
 		this.sFechaPublicacion = fecha
 		this.fechaPublicacion = sdf.parse(fecha)
 	}
 	
 	String getSFechaPublicacion(){
+		SimpleDateFormat sdf = new SimpleDateFormat(getDateFormat())
+		
 		if(sFechaPublicacion){
 			return sFechaPublicacion
 		}else{
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy")
 			try{
 				return sdf.parse(fechaPublicacion)
 			}catch(Exception e){
 				return ""
 			}
 		}
-		
-		
+	}
+	
+	private String getDateFormat() {
+		if (!messageSource){
+			messageSource = ApplicationHolder.getApplication().getMainContext().getBean("messageSource")
+		}
+		return messageSource.getMessage('dateFormat', [this] as Object[],
+		LCH.getLocale())
 	}
 }
