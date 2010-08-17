@@ -80,10 +80,18 @@
 
 		</div>
 		<div id="pageBody">
-			<g:link action="list" controller="book">Book list</g:link>
-			<g:link action="create" controller="book">Add book</g:link>
-			<g:link action="list" controller="author">Author list</g:link>
-			<g:link action="list" controller="editorial">Editorial list</g:link>
+			<div style="width:200px;height:200px;position:relative;float:left;margin:20 20 20 20;">
+				<g:link action="list" controller="book"><img title="${message(code:'book.list')}" src="${createLinkTo(dir: 'images', file: 'libros.png')}"/></g:link>
+			</div>
+			<div style="width:200px;height:200px;position:relative;float:left;margin:20 20 20 20;">
+				<g:link action="create" controller="book"><img title="${message(code:'add.book')}" src="${createLinkTo(dir: 'images', file: 'addbook.png')}"/></g:link>
+			</div>
+			<div style="width:200px;height:200px;position:relative;float:left;border:1px solid #000000;margin:20 20 20 20;">
+				<g:link action="list" controller="author">Author list</g:link>
+			</div>
+			<div style="width:200px;height:200px;position:relative;float:left;border:1px solid #000000;margin:20 20 20 20;">
+				<g:link action="list" controller="editorial">Editorial list</g:link>
+			</div>
 		</div>
     </body>
 </html>
