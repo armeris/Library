@@ -66,6 +66,11 @@ class Book implements Serializable {
 		}
 	}
 	
+	static List<Book> getMostValued(){
+		List<Book> books = new ArrayList<Book>()
+		books = Book.listOrderByValoracion(max:5,order:'desc')
+	}
+	
 	private String getDateFormat() {
 		if (!messageSource){
 			messageSource = ApplicationHolder.getApplication().getMainContext().getBean("messageSource")
