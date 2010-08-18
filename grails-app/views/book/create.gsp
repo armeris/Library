@@ -74,6 +74,14 @@
 	                                    <g:select name="editorial.id" from="${com.biblio.Editorial.list()}" optionKey="id" optionValue="nombre" value="${bookInstance?.editorial?.id}"  />
 	                                </td>
 	                            </tr>
+	                            <tr class="prop">
+                            		<td valign="top" class="name">
+	                                </td>
+	                                
+                            		<td valigh="top">
+                            			<g:link controller="editorial" action="create" params="[referer:'book']" ><g:message code="libro.editorial.add"/></g:link>
+                            		</td>
+                            	</tr>
                             </g:if>
                             <g:else>
                             	<tr class="prop">
@@ -89,13 +97,21 @@
                             
                             <g:if test="${com.biblio.Author.list().size()>0}">
 	                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="autores"><g:message code="libro.autores.label" default="Autores" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: bookInstance, field: 'autores', 'errors')}">
-                                    <g:select name="autores" from="${com.biblio.Author.list()}" multiple="yes" optionKey="id" size="5" value="${bookInstance?.autores*.id}" />
-                                </td>
-                            </tr>
+	                                <td valign="top" class="name">
+	                                  <label for="autores"><g:message code="libro.autores.label" default="Autores" /></label>
+	                                </td>
+	                                <td valign="top" class="value ${hasErrors(bean: bookInstance, field: 'autores', 'errors')}">
+	                                    <g:select name="autores" from="${com.biblio.Author.list()}" multiple="yes" optionKey="id" size="5" value="${bookInstance?.autores*.id}" />
+	                                </td>
+                            	</tr>
+                            	<tr class="prop">
+                            		<td valign="top" class="name">
+	                                </td>
+	                                
+                            		<td valigh="top">
+                            			<g:link controller="author" action="create" params="[referer:'book']" ><g:message code="libro.autor.add"/></g:link>
+                            		</td>
+                            	</tr>
                             </g:if>
                             <g:else>
                             	<tr class="prop">
