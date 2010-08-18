@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.47 r22583"
-   sodipodi:docname="Nuevo documento 1">
+   sodipodi:docname="libros.svg">
   <defs
      id="defs4">
     <inkscape:perspective
@@ -58,7 +58,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -68,7 +68,7 @@
      id="layer1">
     <g
        id="g2830"
-       transform="matrix(0.13180611,0,0,0.13180611,266.73536,308.1172)"
+       transform="matrix(0.47450199,0,0,0.47450199,227.76473,252.18651)"
        inkscape:export-filename="/home/rsali/workspace/experimental/Library/web-app/images/libros200.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
