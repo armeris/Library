@@ -26,6 +26,7 @@
                 }
             }
         </g:javascript>
+        <calendar:resources lang="es" theme="tiger"/>
     </head>
     <body>
         <div class="nav">
@@ -130,7 +131,53 @@
                                     <label for="fechaPublicacion"><g:message code="libro.fechaPublicacion.label" default="Fecha Publicacion" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: bookInstance, field: 'sFechaPublicacion', 'errors')}">
-                                    <g:textField name="sFechaPublicacion" value="${bookInstance.sFechaPublicacion}" />
+                                    <input type="text" id="sFechaPublicacion" name="sFechaPublicacion" readonly="true"/> 
+                    
+				                    <img src="/Library/plugins/calendar-1.2.1/images/skin/calendar.png" id="sFechaPublicacion_picker-trigger" alt="Date"/> 
+				                
+				                    <script type="text/javascript"> 
+				 
+				                        Calendar.setup({
+				                            name:"sFechaPublicacion_picker",
+				                            inputField:"sFechaPublicacion",
+				                            ifFormat:"%d/%m/%Y",
+				                            button:"sFechaPublicacion_picker-trigger",                            
+				                            showsTime:false,
+				                            timeFormat:"24",
+				                            onUpdate:sFechaPublicacion_picker_updated,
+				                            singleClick:true,
+				                            range:[-1000,3000]
+				                            
+				                        });
+				 
+				                        function sFechaPublicacion_picker_updated(calendar) {
+				 
+				                            document.getElementById('sFechaPublicacion_picker').value='struct'
+				                            document.getElementById('sFechaPublicacion_picker_year').value= calendar.date.getFullYear();
+								            document.getElementById('sFechaPublicacion_picker_month').value= calendar.date.getMonth()+1;
+								            document.getElementById('sFechaPublicacion_picker_day').value= calendar.date.getDate();
+				 
+				                            if(calendar.showsTime) {
+				                                document.getElementById('sFechaPublicacion_picker_hour').value= calendar.date.getHours();
+								                document.getElementById('sFechaPublicacion_picker_minute').value= calendar.date.getMinutes();
+				                            }else {
+				                                document.getElementById('sFechaPublicacion_picker_hour').value = 0;
+								                document.getElementById('sFechaPublicacion_picker_minute').value = 0;
+				                            }
+				 
+				                        }
+				 
+				                        function sFechaPublicacion_picker_clean() {
+				                        	document.getElementById('sFechaPublicacion_picker').value='';
+				                                document.getElementById('sFechaPublicacion').value=''
+				                                document.getElementById('sFechaPublicacion_picker_year').value= '';
+								document.getElementById('sFechaPublicacion_picker_month').value= '';
+								document.getElementById('sFechaPublicacion_picker_day').value= '';
+				                                document.getElementById('sFechaPublicacion_picker_hour').value = '';
+								document.getElementById('sFechaPublicacion_picker_minute').value = '';
+				                        }
+				 
+				                    </script> 
                                 </td>
                             </tr>
                         
