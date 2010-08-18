@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.47 r22583"
-   sodipodi:docname="Nuevo documento 1">
+   sodipodi:docname="addbook.svg">
   <defs
      id="defs4">
     <linearGradient
@@ -142,7 +142,10 @@
      inkscape:groupmode="layer"
      id="layer1">
     <g
-       id="g3757">
+       id="g3757"
+       inkscape:export-filename="/home/rsali/workspace/experimental/Library/web-app/images/addbook.png"
+       inkscape:export-xdpi="26.709999"
+       inkscape:export-ydpi="26.709999">
       <g
          transform="translate(22.857139,-35.714287)"
          id="g2830">
