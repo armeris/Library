@@ -56,24 +56,26 @@
     <body>
 		<div id="nav">
 			<div class="homePagePanel">
-				<div class="panelTop">
-
-				</div>
-				<div class="panelBody">
-					<h1><g:message code="preferred.books"/></h1>
-					<ul>
-						<g:each var="book" in="${Book.getMostValued()}">
-							<li><g:link action="show" controller="book" id="${book.id}">${book.titulo}</g:link></li>
-						</g:each>
-					</ul>
-					<h1><g:message code="preferred.authors" /></h1>
-					<ul>
-						<g:each var="author" in="${Author.getPreferredAuthors()}">
-							<li><g:link action="show" controller="author" id="${author.id}">${author.nombre+" "+author.apellido1}</g:link></li>
-						</g:each>
-					</ul>
-				</div>
-				<div class="panelBtm">
+				<g:if test="${Book.list().size()>0}">
+					<div class="panelTop">
+	
+					</div>
+					<div class="panelBody">
+						<h1><g:message code="preferred.books"/></h1>
+						<ul>
+							<g:each var="book" in="${Book.getMostValued()}">
+								<li><g:link action="show" controller="book" id="${book.id}">${book.titulo}</g:link></li>
+							</g:each>
+						</ul>
+						<h1><g:message code="preferred.authors" /></h1>
+						<ul>
+							<g:each var="author" in="${Author.getPreferredAuthors()}">
+								<li><g:link action="show" controller="author" id="${author.id}">${author.nombre+" "+author.apellido1}</g:link></li>
+							</g:each>
+						</ul>
+					</div>
+					<div class="panelBtm">
+				</g:if>
 				</div>
 			</div>
 
@@ -86,11 +88,11 @@
 			<div style="width:200px;height:200px;position:relative;float:left;margin:20 20 20 20;">
 				<g:link action="create" controller="book"><img title="${message(code:'add.book')}" src="${createLinkTo(dir: 'images', file: 'addbook.png')}"/></g:link>
 			</div>
-			<div style="width:200px;height:200px;position:relative;float:left;border:1px solid #000000;margin:20 20 20 20;">
-				<g:link action="list" controller="author">Author list</g:link>
+			<div style="width:200px;height:200px;position:relative;float:left;margin:20 20 20 20;">
+				<g:link action="list" controller="author"><img title="${message(code:'author.list')}" src="${createLinkTo(dir: 'images', file: 'writers.png')}"/></g:link>
 			</div>
-			<div style="width:200px;height:200px;position:relative;float:left;border:1px solid #000000;margin:20 20 20 20;">
-				<g:link action="list" controller="editorial">Editorial list</g:link>
+			<div style="width:200px;height:200px;position:relative;float:left;margin:20 20 20 20;">
+				<g:link action="list" controller="editorial"><img title="${message(code:'editorial.list')}" src="${createLinkTo(dir: 'images', file: 'editorials.png')}"/></g:link>
 			</div>
 		</div>
     </body>
