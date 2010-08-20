@@ -49,7 +49,12 @@ class Book implements Serializable {
 		SimpleDateFormat sdf = new SimpleDateFormat(getDateFormat())
 		
 		this.sFechaPublicacion = fecha
-		this.fechaPublicacion = sdf.parse(fecha)
+		try{
+			this.fechaPublicacion = sdf.parse(fecha)
+		}catch(e){
+			this.fechaPublicacion = null
+			this.sFechaPublicacion = null
+		}
 	}
 	
 	String getSFechaPublicacion(){
