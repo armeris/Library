@@ -19,6 +19,12 @@ class EditorialTests extends GrailsUnitTestCase {
 		assertFalse e1.validate()
 		assertEquals 'nullable', e1.errors['nombre']
 		
+		e1.nombre = ""
+		assertFalse e1.validate()
+		assertEquals 'blank', e1.errors['nombre']
 		
+		e1.nombre = "ab"
+		assertFalse e1.validate()
+		assertEquals 'size', e1.errors['nombre']
     }
 }
