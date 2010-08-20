@@ -81,14 +81,16 @@ class BookController {
 
     def delete = {
         def bookInstance = Book.get(params.id)
+        
         if (bookInstance) {
+			def titulo = bookInstance.titulo
             try {
-                bookInstance.delete(flush: true)
-                flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'libro.label', default: 'Libro'), params.id])}"
+				bookInstance.delete(flush: true)
+                flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'libro.label', default: 'Libro'), titulo])}"
                 redirect(action: "list")
             }
             catch (org.springframework.dao.DataIntegrityViolationException e) {
-                flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'libro.label', default: 'Libro'), params.id])}"
+                flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'libro.label', default: 'Libro'), titulo])}"
                 redirect(action: "show", id: params.id)
             }
         }
