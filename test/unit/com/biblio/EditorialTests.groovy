@@ -2,7 +2,6 @@ package com.biblio
 
 import grails.test.*
 import com.biblio.Editorial
-import com.biblio.EditorialController 
 
 class EditorialTests extends GrailsUnitTestCase {
     protected void setUp() {
