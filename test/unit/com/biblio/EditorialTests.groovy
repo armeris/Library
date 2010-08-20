@@ -8,7 +8,6 @@ class EditorialTests extends GrailsUnitTestCase {
     protected void setUp() {
         super.setUp()
         mockForConstraintsTests(Editorial, [])
-        mockController(EditorialController)
     }
 
     protected void tearDown() {
@@ -19,11 +18,6 @@ class EditorialTests extends GrailsUnitTestCase {
     	Editorial e1 = new Editorial()
 		assertFalse e1.validate()
 		assertEquals 'nullable', e1.errors['nombre']
-		
-		def editorialController = new EditorialController()
-		editorialController.params.nombre = 'Nova'
-		
-		editorialController.save
 		
 		
     }
