@@ -2,7 +2,6 @@ package com.biblio
 
 import grails.test.*
 import com.biblio.Book
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
 
 class BookTests extends GrailsUnitTestCase {
     protected void setUp() {
@@ -15,17 +14,48 @@ class BookTests extends GrailsUnitTestCase {
     }
 
     void testBook() {
-    	Book a1 = new Book()
-		assertFalse a1.validate()
+    	Book book = new Book()
+		assertFalse book.validate()
 
 		//Validación Author.nombre
-		assertEquals 'nullable', a1.errors['titulo']
-		a1.titulo = ""
-		assertFalse a1.validate()
-		assertEquals 'blank', a1.errors['titulo']
-		a1.titulo = "ab"
-		assertFalse a1.validate()
-		assertEquals 'size', a1.errors['titulo']
-		a1.titulo = "Francisco"
+		assertEquals 'nullable', book.errors['titulo']
+		book.titulo = ""
+		assertFalse book.validate()
+		assertEquals 'blank', book.errors['titulo']
+		book.titulo = "La Celestina"
+		assertFalse book.validate()
+		assertNull 'nullable', book.errors['titulo']
+		assertNull 'blank', book.errors['titulo']
+
+		//Validación Author.ISBN
+		book.ISBN = "123123123"
+		assertFalse book.validate()
+		assertEquals 'validator', book.errors['ISBN']
+		book.ISBN = "12312312312312"
+		assertFalse book.validate()
+		assertEquals 'validator', book.errors['ISBN']
+		book.ISBN = ""
+		assertFalse book.validate()
+		assertEquals 'blank', book.errors['ISBN']
+		book.ISBN = null
+		book.validate()
+		assertNull book.errors['ISBN']
+		
+		//Validación autores
+		assertEquals 'nullable', book.errors['autores']
+		Author author = new Author(nombre : 'Fernando', apellido1: 'de Rojas')
+		book.autores = new ArrayList()
+		book.autores.add author
+		assertFalse book.validate()
+		assertNull book.errors['autores']
+		
+		//Validación editorial
+		assertEquals 'nullable', book.errors['editorial']
+		Editorial ed = new Editorial(nombre:'nova')
+		book.editorial = ed
+		assertTrue book.validate()
+		assertNull book.errors['editorial']
+		
+		
 	}
 }
