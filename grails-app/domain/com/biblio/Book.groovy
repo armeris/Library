@@ -4,12 +4,14 @@ import java.text.SimpleDateFormat
 import org.codehaus.groovy.grails.commons.ApplicationHolder
 import org.springframework.context.i18n.LocaleContextHolder as LCH
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
+
 class Book implements Serializable {
 	
 	String titulo
 	String ISBN
 	Date fechaPublicacion
-	String sFechaPublicacion
+	String SFechaPublicacion
 	String comentario
 	int valoracion
 	boolean leido
@@ -19,7 +21,7 @@ class Book implements Serializable {
 	
 	static hasMany = [autores:Author]
 	                  
-    static transients = ["sFechaPublicacion"]
+    static transients = ["SFechaPublicacion"]
 	                  
     static constraints = {
 		titulo(nullable:false,blank:false,size:3..50)
@@ -35,39 +37,38 @@ class Book implements Serializable {
 		comentario(nullable:true,blank:true,size:0..2000)
 		valoracion(nullable:true,blank:true,inList:[-1,0,1,2,3,4])
     }
-
-	void setFechaPublicacion(String fecha){
-		SimpleDateFormat sdf = new SimpleDateFormat(getDateFormat())
-		try{
-			this.fechaPublicacion = sdf.parse(fecha)
-		}catch(Exception e){
-			this.fechaPublicacion = null
-		}
-	}
 	
 	void setSFechaPublicacion(String fecha){
-		SimpleDateFormat sdf = new SimpleDateFormat(getDateFormat())
-		
-		this.sFechaPublicacion = fecha
-		try{
-			this.fechaPublicacion = sdf.parse(fecha)
-		}catch(e){
-			this.fechaPublicacion = null
-			this.sFechaPublicacion = null
+		SimpleDateFormat sdf
+		if(getDateFormat()){
+			sdf = new SimpleDateFormat(getDateFormat())
+			this.SFechaPublicacion = fecha
+			try{
+				this.fechaPublicacion = sdf.parse(fecha)
+			}catch(Exception e){
+				e.printStackTrace()
+				this.fechaPublicacion = null
+				this.SFechaPublicacion = null
+			}
 		}
 	}
 	
 	String getSFechaPublicacion(){
-		SimpleDateFormat sdf = new SimpleDateFormat(getDateFormat())
+		SimpleDateFormat sdf
+		if(getDateFormat()){
+			sdf = new SimpleDateFormat(getDateFormat())
 		
-		if(sFechaPublicacion){
-			return sFechaPublicacion
-		}else{
-			try{
-				return sdf.parse(fechaPublicacion)
-			}catch(Exception e){
-				return ""
+			if(SFechaPublicacion){
+				return SFechaPublicacion
+			}else{
+				try{
+					return sdf.format(fechaPublicacion)
+				}catch(Exception e){
+					return ""
+				}
 			}
+		}else{
+			return ""
 		}
 	}
 	
@@ -80,7 +81,10 @@ class Book implements Serializable {
 		if (!messageSource){
 			messageSource = ApplicationHolder.getApplication().getMainContext().getBean("messageSource")
 		}
-		return messageSource.getMessage('dateFormat', [this] as Object[],
-		LCH.getLocale())
+		if(messageSource){
+			return messageSource.getMessage('dateFormat', [this] as Object[],LCH.getLocale())
+		}else{
+			return null
+		}
 	}
 }

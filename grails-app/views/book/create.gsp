@@ -130,8 +130,8 @@
                                 <td valign="top" class="name">
                                     <label for="fechaPublicacion"><g:message code="libro.fechaPublicacion.label" default="Fecha Publicacion" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean: bookInstance, field: 'sFechaPublicacion', 'errors')}">
-                                    <input type="text" id="sFechaPublicacion" name="sFechaPublicacion" readonly="true"/> 
+                                <td valign="top" class="value ${hasErrors(bean: bookInstance, field: 'SFechaPublicacion', 'errors')}">
+                                    <input type="text" id="SFechaPublicacion" name="SFechaPublicacion" readonly="true"/> 
                     
 				                    <img src="/Library/plugins/calendar-1.2.1/images/skin/calendar.png" id="sFechaPublicacion_picker-trigger" alt="Date"/> 
 				                
@@ -139,7 +139,7 @@
 				 
 				                        Calendar.setup({
 				                            name:"sFechaPublicacion_picker",
-				                            inputField:"sFechaPublicacion",
+				                            inputField:"SFechaPublicacion",
 				                            ifFormat:"%d/%m/%Y",
 				                            button:"sFechaPublicacion_picker-trigger",                            
 				                            showsTime:false,
@@ -169,7 +169,7 @@
 				 
 				                        function sFechaPublicacion_picker_clean() {
 				                        	document.getElementById('sFechaPublicacion_picker').value='';
-				                                document.getElementById('sFechaPublicacion').value=''
+				                                document.getElementById('SFechaPublicacion').value=''
 				                                document.getElementById('sFechaPublicacion_picker_year').value= '';
 								document.getElementById('sFechaPublicacion_picker_month').value= '';
 								document.getElementById('sFechaPublicacion_picker_day').value= '';

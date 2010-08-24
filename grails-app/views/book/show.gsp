@@ -36,11 +36,11 @@
                             
                         </tr>
                     
-                    	<g:if test="${bookInstance.sFechaPublicacion}">
+                    	<g:if test="${bookInstance.SFechaPublicacion}">
 	                        <tr class="prop">
 	                            <td valign="top" class="name"><g:message code="libro.fechaDePublicacion.label" default="Fecha De Publicacion" /></td>
 	                            
-	                            <td valign="top" class="value">${fieldValue(bean: bookInstance, field: "sFechaPublicacion")}</td>
+	                            <td valign="top" class="value">${fieldValue(bean: bookInstance, field: "SFechaPublicacion")}</td>
 	                            
 	                        </tr>
                         </g:if>
