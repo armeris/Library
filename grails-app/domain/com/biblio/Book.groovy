@@ -24,14 +24,15 @@ class Book implements Serializable {
     static transients = ["SFechaPublicacion"]
 	                  
     static constraints = {
-		titulo(nullable:false,blank:false,size:3..50)
-		ISBN(nullable:true,blank:true,unique:true,validator:{val->
+		titulo(nullable:false,blank:false)
+		ISBN(nullable:true,blank:false,unique:true,validator:{val->
 			if(val==null || (val.length()==10 || val.length()==13)){
 				return true
 			}else{
 				return false
 			}
 		})
+		editorial(nullable:false)
 		autores(nullable:false)
 		fechaPublicacion(nullable:true,blank:true)
 		comentario(nullable:true,blank:true,size:0..2000)
