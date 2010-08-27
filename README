@@ -1,0 +1,6 @@
+################################################
+### LIBRARY APP
+################################################
+
+This application is intended for managing a simple collection of books.
+To run it you must use Grails 1.3.1
