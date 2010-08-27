@@ -17,7 +17,7 @@ class BookTests extends GrailsUnitTestCase {
     	Book book = new Book()
 		assertFalse book.validate()
 
-		//Validación Author.nombre
+		//Validación Book.titulo
 		assertEquals 'nullable', book.errors['titulo']
 		book.titulo = ""
 		assertFalse book.validate()
@@ -26,8 +26,8 @@ class BookTests extends GrailsUnitTestCase {
 		assertFalse book.validate()
 		assertNull 'nullable', book.errors['titulo']
 		assertNull 'blank', book.errors['titulo']
-
-		//Validación Author.ISBN
+		
+		//Validación Book.ISBN
 		book.ISBN = "123123123"
 		assertFalse book.validate()
 		assertEquals 'validator', book.errors['ISBN']
@@ -56,6 +56,8 @@ class BookTests extends GrailsUnitTestCase {
 		assertTrue book.validate()
 		assertNull book.errors['editorial']
 		
+		book.valoracion = 9
+		assertFalse book.validate()
 		
 	}
 }

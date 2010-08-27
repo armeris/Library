@@ -176,7 +176,7 @@
 	                                  <label for="valoracion"><g:message code="libro.valoracion.label" default="Valoracion" /></label>
 	                                </td>
 	                                <td valign="top" class="value ${hasErrors(bean: bookInstance, field: 'valoracion', 'errors')}">
-	                                    <g:select name="valoracion" from="${bookInstance.constraints.valoracion.inList}" value="${fieldValue(bean: bookInstance, field: 'valoracion')}" valueMessagePrefix="libro.valoracion"  />
+	                                    <g:select name="valoracion" from="${[0,1,2,3,4]}" value="${fieldValue(bean: bookInstance, field: 'valoracion')}" valueMessagePrefix="libro.valoracion"  />
 	                                </td>
 	                            </tr>
                             </g:else>
